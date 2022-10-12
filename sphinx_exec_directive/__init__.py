@@ -81,6 +81,13 @@ def execute_code(code, process, globals_dict=None):
     return code_out
 
 
+def execute_repl(lines):
+    
+    proc = subprocess.Popen('python', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    for line in lines:
+        proc.stdin.write(line)
+        proc.stdin.write('\n')
+
 def _option_boolean(arg):
     """Copied from matplotlib plot_directive."""
     if not arg or not arg.strip():
